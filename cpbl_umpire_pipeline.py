@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+
 # -*- coding: utf-8 -*-
-"""今天誰主審？ 2026 中職逐球資料 -> 好球帶驗證 -> ML -> 歷史情蒐 -> 離線 HTML
+"""中職主審歷史判決情蒐平台 · 2026 第三方逐球資料｜變形蟲還是外角海 — 2026 中職逐球資料 -> 好球帶驗證 -> ML -> 歷史情蒐 -> 離線 HTML
 
 Usage:
   python cpbl_umpire_pipeline.py --input umpire_pitch_calls.csv --out output
@@ -662,9 +662,9 @@ def standalone_mobile_html(payload: dict) -> str:
         return f'<section id="ump-{esc(name,quote=True)}"><h2>主審：{esc(name)}｜0壞0好</h2><p>歷史相對偏好（pp）：與相同球數、同區域其他主審的模型殘差比較。</p><div class="scroll"><table><thead><tr><th>區域</th><th>相對差異</th><th>球／場</th><th>全季樣本</th></tr></thead><tbody>{"".join(lines)}</tbody></table></div></section>'
     links=' '.join(f'<a class="nav" href="#region-{r}">{labels[r]}</a>' for r in regions)
     umps=' '.join(f'<a class="nav" href="#ump-{esc(n,quote=True)}">{esc(n)}</a>' for n in names)
-    markup=f'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>今天誰主審？｜手機純靜態版</title><style>
+    markup=f'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>中職主審歷史判決情蒐平台 · 2026 第三方逐球資料｜變形蟲還是外角海｜手機純靜態版</title><style>
 :root{{color-scheme:dark}}*{{box-sizing:border-box}}body{{margin:0;background:#101c30;color:#edf5fd;font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif}}main{{max-width:980px;margin:auto;padding:20px 13px 60px}}h1{{font-size:30px}}h2{{font-size:20px;margin:0 0 8px}}section{{background:#1b2d46;border:1px solid #44607f;border-radius:14px;margin:17px 0;padding:15px}}p{{color:#c6d4e5}}.warn{{border-left:5px solid #e4ad72;background:#3c3132;padding:12px;border-radius:8px}}.nav{{display:inline-block;padding:7px 10px;border-radius:8px;background:#29445f;margin:4px;color:#e6f5ff;text-decoration:none}}.scroll{{overflow-x:auto}}table{{width:100%;border-collapse:collapse;min-width:550px}}th,td{{text-align:left;border-bottom:1px solid #39506a;padding:9px 6px}}th{{color:#a8d2df;white-space:nowrap}}td a{{color:#a8d2ee}}strong{{color:#fff}}small{{color:#b3c5d5}}
-</style></head><body><main><h1>今天誰主審？</h1><p>📱 手機純靜態閱讀版｜不需要 JavaScript，可在手機檔案預覽器閱讀。注意：本版本不支援即時切換球數與排序；完整互動功能請開啟網頁版。</p><div class="warn">{esc(disclaimer)}</div><section><h2>聯盟排行榜：選區域</h2>{links}<h2 style="margin-top:16px">主審 0 壞 0 好歷史卡</h2>{umps}</section>{''.join(rate_ranking(r) for r in regions)}{''.join(umpire_card(n) for n in names)}<small>統計定義：10公分以內邊緣球；Left/Right 是資料座標，不能直接視作打者內外角；「撿理論壞球」不等於官方認定誤判；E 只表示樣本不足。</small></main></body></html>'''
+</style></head><body><main><h1>中職主審歷史判決情蒐平台 · 2026 第三方逐球資料</h1><p>變形蟲還是外角海 · 📱 手機純靜態閱讀版｜不需要 JavaScript，可在手機檔案預覽器閱讀。注意：本版本不支援即時切換球數與排序；完整互動功能請開啟網頁版。</p><div class="warn">{esc(disclaimer)}</div><section><h2>聯盟排行榜：選區域</h2>{links}<h2 style="margin-top:16px">主審 0 壞 0 好歷史卡</h2>{umps}</section>{''.join(rate_ranking(r) for r in regions)}{''.join(umpire_card(n) for n in names)}<small>統計定義：10公分以內邊緣球；Left/Right 是資料座標，不能直接視作打者內外角；「撿理論壞球」不等於官方認定誤判；E 只表示樣本不足。</small></main></body></html>'''
     return markup
 
 def write_html(geometry:dict,model:pd.DataFrame,test_boot:pd.DataFrame,regions:pd.DataFrame,overall:pd.DataFrame,
@@ -681,7 +681,7 @@ def write_html(geometry:dict,model:pd.DataFrame,test_boot:pd.DataFrame,regions:p
     payload=json_safe(body)
     static_fallback=static_mobile_fallback(body)
     template=r'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>今天誰主審？｜中職主審歷史情蒐</title>
+<title>中職主審歷史判決情蒐平台 · 2026 第三方逐球資料｜變形蟲還是外角海</title>
 <style>
 :root{--bg:#0c1423;--panel:#17243a;--panel2:#1e3048;--line:#34475e;--ink:#f0f6fd;--muted:#b4c4d5;--pos:#f1a080;--neg:#82baf1;--accent:#79c5b6}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% -10%,#28405e,transparent 42%),var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif}
@@ -702,7 +702,7 @@ footer{font-size:12px;color:var(--muted);margin-top:20px}.splitline{height:1px;b
 
 .ranking{background:linear-gradient(140deg,#183048,#13243b);border:1px solid #407084;border-radius:18px;padding:22px;margin:18px 0}.rankhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.rankinfo{border:1px solid #45637a;background:#1c3349;padding:11px;border-radius:10px;font-size:13px;margin-bottom:14px}.leaderboard{border-collapse:collapse;width:100%;min-width:650px}.leaderboard th,.leaderboard td{border-bottom:1px solid #35516b;padding:11px 9px;text-align:left}.leaderboard tbody tr:hover{background:#28445c}.leaderboard tr.warnrow{color:#b7c3cf}.leaderboard tr.warnrow td{opacity:.9}.leaderboard td.value{font-weight:800;font-variant-numeric:tabular-nums}.leaderboard td.value.strong{color:#efc3a9}.leaderboard button{padding:5px 9px;font-size:12px}.rankwarn{font-size:11px;color:#ffe0b8;border:1px solid #8c7765;border-radius:7px;padding:3px 6px;white-space:nowrap}
 </style></head><body><main>
-<div class="top"><div><div class="kicker">CPBL / HISTORICAL UMPIRE SCOUTING</div><h1>今天誰主審？</h1><p class="muted">中職主審歷史判決情蒐平台 · 2026 第三方逐球資料</p></div><span class="chip" id="sampleChip"></span></div>
+<div class="top"><div><div class="kicker">CPBL / HISTORICAL UMPIRE SCOUTING</div><h1>中職主審歷史判決情蒐平台 · 2026 第三方逐球資料</h1><p class="muted">變形蟲還是外角海</p></div><span class="chip" id="sampleChip"></span></div>
 <div class="notice"><strong>本平台只展示歷史判決，不對主審能力評分。</strong><div class="small">只有資料涵蓋未達門檻時顯示「⚠ E｜樣本不足」。E 不是裁判能力或準確率評分。<span id="previewNote"></span></div></div>
 __STATIC_MOBILE_FALLBACK__
 <section class="panel"><h2>使用說明</h2><div class="cols3">
