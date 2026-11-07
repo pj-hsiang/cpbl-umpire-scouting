@@ -1,4 +1,8 @@
-# 今天誰主審？｜CPBL Umpire Scouting Dashboard
+# 中職主審歷史判決情蒐平台 · 2026 第三方逐球資料
+
+**變形蟲還是外角海**
+
+*CPBL Umpire Scouting Dashboard*
 
 **An interactive baseball analytics project exploring historical strike-zone tendencies among CPBL home-plate umpires.**
 
