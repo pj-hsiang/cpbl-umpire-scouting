@@ -8,7 +8,7 @@
 
 以中華職棒（CPBL）逐球判決資料為基礎，建立主審歷史好球帶情蒐平台。透過 Python、機器學習與統計分析，讓使用者比較主審在不同球數、好球帶區域的判決傾向，並查看樣本數與資料限制。
 
-> **[開啟互動式網站（Live Demo）](https://YOUR_GITHUB_USERNAME.github.io/cpbl-umpire-scouting/)**  
+> **[開啟互動式網站（Live Demo）](https://pj-hsiang.github.io/cpbl-umpire-scouting/)**  
 
 ## Project at a glance
 
